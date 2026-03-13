@@ -151,18 +151,22 @@ export default function ProductDetail() {
                         </div>
 
                         <div className="py-4 space-y-4">
-                            <div className="flex items-center gap-8">
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/india/images/icons/7-days_return._CB653229871_.png" className="w-6 h-6 object-contain" alt="" /></div>
-                                    <span className="text-[11px] text-[#007185] text-center font-medium">7 days Returnable</span>
+                            <div className="flex items-center gap-6 overflow-x-auto no-scrollbar pb-2">
+                                <div className="flex flex-col items-center gap-1 min-w-[70px]">
+                                    <div className="w-10 h-10 flex items-center justify-center"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/trust_icon_free_shipping_81px._CB562549966_.png" className="w-9 h-9 object-contain" alt="Free Shipping" /></div>
+                                    <span className="text-[11px] text-[#007185] text-center font-medium leading-tight">Free <br /> Delivery</span>
                                 </div>
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100 text-[#007185]"><ChevronRight size={20} className="rotate-90" /></div>
-                                    <span className="text-[11px] text-[#007185] text-center font-medium">Free Delivery</span>
+                                <div className="flex flex-col items-center gap-1 min-w-[70px]">
+                                    <div className="w-10 h-10 flex items-center justify-center"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-returns._CB562506492_.png" className="w-9 h-9 object-contain" alt="Non-refundable" /></div>
+                                    <span className="text-[11px] text-[#007185] text-center font-medium leading-tight">Non- <br /> Refundable</span>
                                 </div>
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/india/images/icons/trust._CB653229871_.png" className="w-6 h-6 object-contain" alt="" /></div>
-                                    <span className="text-[11px] text-[#007185] text-center font-medium">Secure Transaction</span>
+                                <div className="flex flex-col items-center gap-1 min-w-[70px]">
+                                    <div className="w-10 h-10 flex items-center justify-center"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-warranty._CB485935626_.png" className="w-9 h-9 object-contain" alt="Warranty" /></div>
+                                    <span className="text-[11px] text-[#007185] text-center font-medium leading-tight">Warranty <br /> Policy</span>
+                                </div>
+                                <div className="flex flex-col items-center gap-1 min-w-[70px]">
+                                    <div className="w-10 h-10 flex items-center justify-center"><img src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/Secure-payment._CB650126890_.png" className="w-9 h-9 object-contain" alt="Secure Transaction" /></div>
+                                    <span className="text-[11px] text-[#007185] text-center font-medium leading-tight">Secure <br /> Transaction</span>
                                 </div>
                             </div>
 
