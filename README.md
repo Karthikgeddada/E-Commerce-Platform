@@ -7,6 +7,7 @@ A production-grade, full-stack e-commerce solution engineered to replicate the p
 ### 🌐 Live Deployment
 *   **Production Frontend**: [e-commerce-platform.up.railway.app](https://e-commerce-platform.up.railway.app)
 *   **Production API**: [e-commerce-platform-production-5fe7.up.railway.app](https://e-commerce-platform-production-5fe7.up.railway.app)
+*   **GitHub Repository**: https://github.com/Karthikgeddada/E-Commerce-Platform
 *   **Database Stack**: Neon Serverless PostgreSQL
 
 ---
