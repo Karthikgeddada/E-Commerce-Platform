@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { orderService } from '@/services/api';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('id');
     const [order, setOrder] = useState<any>(null);
@@ -29,8 +29,8 @@ export default function OrderSuccessPage() {
         }
     }, [orderId]);
 
-    if (loading) return <div>Loading...</div>;
-    if (!order) return <div>Order not found</div>;
+    if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    if (!order) return <div className="min-h-screen flex items-center justify-center">Order not found</div>;
 
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col text-black">
@@ -80,7 +80,9 @@ export default function OrderSuccessPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {order.items.map((item: any) => (
                                 <div key={item.id} className="flex gap-4 p-4 border border-gray-200 rounded-sm hover:shadow-sm bg-white">
-                                    <img src={item.primary_image} alt="" className="w-16 h-16 object-contain" />
+                                    <div className="w-16 h-16 flex-shrink-0">
+                                        <img src={item.primary_image} alt="" className="w-full h-full object-contain" />
+                                    </div>
                                     <div>
                                         <p className="text-xs font-bold line-clamp-2 text-gray-900">{item.name}</p>
                                         <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
@@ -108,5 +110,13 @@ export default function OrderSuccessPage() {
                 </div>
             </main>
         </div>
+    );
+}
+
+export default function OrderSuccessPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+            <OrderSuccessContent />
+        </Suspense>
     );
 }
