@@ -121,7 +121,7 @@ export default function CartPage() {
                                         </div>
                                         <p className="text-[#007600] text-[12px] font-bold mb-1">In stock</p>
                                         <div className="flex items-center gap-1.5 mb-4">
-                                            <img src="https://m.media-amazon.com/images/G/31/marketing/fba/prime-badge-32x.png" className="h-3.5" alt="Prime" />
+                                            <img src="https://m.media-amazon.com/images/G/31/marketing/prime/2022PrimeBrand/Logos/Prime_Logo_RGB_Prime_Blue_MASTER._CB542734830_.png" className="h-4" alt="Prime" />
                                             <span className="text-[12px] text-gray-500 font-medium">Eligible for FREE Shipping</span>
                                         </div>
 

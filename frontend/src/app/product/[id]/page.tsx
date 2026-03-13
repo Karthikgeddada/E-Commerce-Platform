@@ -145,7 +145,7 @@ export default function ProductDetail() {
                             <p className="text-[14px] mt-2 font-medium text-gray-900">Inclusive of all taxes</p>
 
                             <div className="mt-4 flex items-center gap-2 bg-[#f0f2f2] p-3 rounded-md border border-gray-200">
-                                <img src="https://m.media-amazon.com/images/G/31/marketing/fba/prime-badge-32x.png" className="h-4" alt="Prime" />
+                                <img src="https://m.media-amazon.com/images/G/31/marketing/prime/2022PrimeBrand/Logos/Prime_Logo_RGB_Prime_Blue_MASTER._CB542734830_.png" className="h-4 md:h-5" alt="Prime" />
                                 <p className="text-[13px] text-gray-700 font-medium">Enjoy <span className="font-bold">Unlimited FREE Delivery</span> with Prime</p>
                             </div>
                         </div>
@@ -190,7 +190,7 @@ export default function ProductDetail() {
                                 <span className="text-3xl font-bold leading-none tracking-tight">{Number(product.price).toLocaleString('en-IN')}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <img src="https://m.media-amazon.com/images/G/31/marketing/fba/prime-badge-32x.png" className="h-4" alt="Prime" />
+                                <img src="https://m.media-amazon.com/images/G/31/marketing/prime/2022PrimeBrand/Logos/Prime_Logo_RGB_Prime_Blue_MASTER._CB542734830_.png" className="h-5" alt="Prime" />
                                 <span className="text-[14px] text-[#007185] font-medium">Free Delivery</span>
                             </div>
                         </div>

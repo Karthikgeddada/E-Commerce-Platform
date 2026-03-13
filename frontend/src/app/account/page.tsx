@@ -51,7 +51,7 @@ export default function AccountPage() {
         {
             title: "Prime",
             description: "Manage your membership, view benefits, and payment settings",
-            icon: <Zap size={32} className="text-[#00a8e1]" />,
+            icon: <img src="https://m.media-amazon.com/images/G/31/marketing/prime/2022PrimeBrand/Logos/Prime_Logo_RGB_Prime_Blue_MASTER._CB542734830_.png" className="h-8 object-contain" alt="Prime" />,
             link: "/prime",
             bg: "bg-white border-gray-100"
         },
