@@ -102,7 +102,10 @@ exports.forgotPassword = async (req, res) => {
             [token, expiry, email]
         );
 
-        await emailService.sendPasswordResetEmail(email, token);
+        // Send email in background to prevent request hang
+        emailService.sendPasswordResetEmail(email, token).catch(err => {
+            console.error('Background Password Reset Email Failure:', err);
+        });
 
         res.json({ success: true, message: 'Reset email sent' });
     } catch (error) {
