@@ -14,7 +14,14 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://e-commerce-platform.up.railway.app',
+        'http://localhost:3000',
+        'http://localhost:3001'
+    ],
+    credentials: true
+}));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
