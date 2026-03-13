@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors());
