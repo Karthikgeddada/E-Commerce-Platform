@@ -78,4 +78,4 @@ For testing purposes, users can sign up for a new account or use the established
 ### **Final Note to Reviewers**
 This platform was built with a focus on **Software Engineering best practices**, including modular code, separation of concerns, and production-ready error handling. My goal was to create a system that isn't just a prototype, but a scalable foundation for a real e-commerce business.
 
-**I am looking forward to proving my technical expertise in Round 3!**
+
