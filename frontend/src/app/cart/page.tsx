@@ -106,7 +106,7 @@ export default function CartPage() {
                     ) : (
                         <div className="flex flex-col">
                             <div className="flex justify-between items-end border-b pb-1 mb-2">
-                                <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
+                                <h1 className="text-[28px] font-normal text-gray-900">Shopping Cart</h1>
                                 <span className="text-[14px] text-gray-500 mb-1">Price</span>
                             </div>
                             {cartItems.map((item) => (
@@ -116,7 +116,7 @@ export default function CartPage() {
                                     </div>
                                     <div className="flex-1 flex flex-col">
                                         <div className="flex flex-col sm:flex-row justify-between items-start mb-2 group-hover:text-[#007185] transition-colors">
-                                            <h3 className="text-[16px] md:text-[18px] font-bold text-gray-900 leading-snug lg:max-w-[80%] line-clamp-2">{item.name}</h3>
+                                            <h3 className="text-[17px] md:text-[18px] font-medium text-gray-900 hover:text-[#c45500] hover:underline cursor-pointer leading-snug lg:max-w-[75%] line-clamp-2 transition-colors">{item.name}</h3>
                                             <span className="font-bold text-[18px] text-gray-900 whitespace-nowrap mt-2 sm:mt-0">₹{Number(item.price).toLocaleString('en-IN')}</span>
                                         </div>
                                         <p className="text-[#007600] text-[12px] font-bold mb-1">In stock</p>

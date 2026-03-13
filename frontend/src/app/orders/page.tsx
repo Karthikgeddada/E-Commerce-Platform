@@ -65,7 +65,7 @@ export default function OrdersPage() {
                     <span className="text-[#c45500]">Your Orders</span>
                 </div>
 
-                <h1 className="text-3xl font-medium mb-6 text-gray-900">Your Orders</h1>
+                <h1 className="text-[28px] font-normal mb-6 text-gray-900">Your Orders</h1>
 
                 <div className="flex gap-4 md:gap-6 mb-8 border-b border-gray-300 overflow-x-auto no-scrollbar whitespace-nowrap">
                     {['Orders', 'Buy Again', 'Not Yet Shipped', 'Cancelled'].map((tab) => (

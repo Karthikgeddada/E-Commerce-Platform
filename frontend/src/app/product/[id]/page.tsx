@@ -118,7 +118,7 @@ export default function ProductDetail() {
 
                     {/* Middle: Info Section */}
                     <div className="flex-1 lg:max-w-[35%]">
-                        <h1 className="text-2xl md:text-3xl font-bold mb-1 text-gray-900 leading-tight">{product.name}</h1>
+                        <h1 className="text-2xl font-medium mb-1 text-gray-900 leading-tight tracking-tight">{product.name}</h1>
                         <Link href="/" className="text-[#007185] text-[14px] font-medium hover:text-[#c45500] hover:underline">Visit the {product.category_name} Store</Link>
 
                         <div className="flex items-center gap-3 mt-3 border-b border-gray-100 pb-4">
@@ -183,7 +183,7 @@ export default function ProductDetail() {
                     </div>
 
                     {/* Right: Buy Box */}
-                    <div className="w-full lg:w-[280px] border border-gray-300 rounded-[8px] p-5 flex flex-col h-fit sticky top-[80px] shadow-sm">
+                    <div className="w-full lg:w-[280px] border border-[#d5d9d9] rounded-[8px] p-5 flex flex-col h-fit sticky top-[80px] bg-white">
                         <div className="mb-4">
                             <div className="flex items-baseline gap-1 text-gray-900 mb-1">
                                 <span className="text-[16px] font-medium leading-none mt-1 text-gray-700">₹</span>
@@ -250,15 +250,15 @@ export default function ProductDetail() {
                 </div>
 
                 {/* Technical Details Section */}
-                <div className="mt-16 bg-white max-w-[1000px]">
-                    <h2 className="text-xl font-bold mb-6 text-gray-900 border-b border-gray-100 pb-2">Technical Details</h2>
+                <div className="mt-12 bg-white max-w-[1000px] border-t border-gray-200 pt-8">
+                    <h2 className="text-xl font-bold mb-4 text-gray-900">Technical Details</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                        <table className="text-[14px] w-full border-collapse">
+                        <table className="text-[13px] w-full border border-gray-200">
                             <tbody>
                                 {Object.entries(specs).map(([key, val]: [string, any], idx: number) => (
-                                    <tr key={key} className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'} border-b border-gray-100 last:border-0`}>
-                                        <td className="py-3 px-4 font-bold text-gray-800 w-[140px] uppercase text-[11px] tracking-wider">{key}</td>
-                                        <td className="py-3 px-4 text-gray-700">{val}</td>
+                                    <tr key={key} className="border-b border-gray-200 last:border-0">
+                                        <td className="py-2.5 px-4 font-bold text-gray-900 w-[160px] bg-[#f3f3f3] border-r border-gray-200">{key}</td>
+                                        <td className="py-2.5 px-4 text-gray-800">{val}</td>
                                     </tr>
                                 ))}
                             </tbody>

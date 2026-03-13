@@ -137,11 +137,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <div className="space-y-1 mb-4 text-[12px]">
                         {isPrime && (
                             <div className="flex items-center gap-1.5">
-                                <img src="https://m.media-amazon.com/images/G/31/marketing/fba/prime-badge-32x.png" alt="Prime" className="h-4" />
-                                <span className="text-gray-600 font-medium">FREE delivery <span className="font-bold text-gray-900">Tomorrow</span></span>
+                                <img src="https://m.media-amazon.com/images/G/31/marketing/prime/2022PrimeBrand/Logos/Prime_Logo_RGB_Prime_Blue_MASTER._CB542734830_.png" alt="Prime" className="h-4" />
+                                <span className="text-gray-600 font-medium">Get it by <span className="font-bold text-gray-900">Tomorrow</span></span>
                             </div>
                         )}
-                        {!isPrime && <p className="text-gray-600">FREE delivery <span className="font-bold text-gray-900">Monday, 20 Oct</span></p>}
+                        {!isPrime && <p className="text-gray-600">FREE delivery <span className="font-bold text-gray-900">Monday, 16 Mar</span></p>}
                     </div>
                 </div>
             </Link>
