@@ -85,7 +85,8 @@ exports.createOrder = async (req, res) => {
 exports.getOrderById = async (req, res) => {
     try {
         const { id } = req.params;
-        const orderResult = await db.query('SELECT * FROM orders WHERE id = $1', [id]);
+        const userId = req.user.id;
+        const orderResult = await db.query('SELECT * FROM orders WHERE id = $1 AND user_id = $2', [id, userId]);
 
         if (orderResult.rows.length === 0) {
             return res.status(404).json({ success: false, message: 'Order not found' });
@@ -110,7 +111,7 @@ exports.getOrderById = async (req, res) => {
 
 exports.getUserOrders = async (req, res) => {
     try {
-        const userId = req.params.userId || req.user.id;
+        const userId = req.user.id;
         const { status } = req.query;
         let query = 'SELECT * FROM orders WHERE user_id = $1';
         const params = [userId];
