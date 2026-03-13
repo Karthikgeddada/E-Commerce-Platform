@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, ShoppingCart, MapPin, Menu, ChevronDown } from 'lucide-react';
+import AmazonLogo from './AmazonLogo';
 import { cartService, authService } from '@/services/api';
 import LocationModal from './LocationModal';
 import Sidebar from './Sidebar';
@@ -114,13 +115,8 @@ const Navbar = () => {
                         <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 text-white hover:bg-gray-800 rounded-sm">
                             <Menu size={24} />
                         </button>
-                        <Link href="/" className="flex items-center border border-transparent hover:border-white px-2 pt-2 transition-all rounded-sm group overflow-hidden h-[45px] md:h-[50px]">
-                            <img
-                                src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-                                alt="Amazon.in"
-                                className="h-[75%] w-auto object-contain brightness-[100] contrast-[100]"
-                            />
-                            <span className="text-[14px] font-bold text-white mt-1.5 ml-0.5">.in</span>
+                        <Link href="/" className="flex items-center border border-transparent hover:border-white px-2 pt-2 pb-1 transition-all rounded-sm group h-[50px]">
+                            <AmazonLogo variant="white" height={45} />
                         </Link>
                     </div>
 

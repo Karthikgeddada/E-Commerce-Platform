@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronLeft, Lock, Check } from 'lucide-react';
 import OrderSummary from '@/components/OrderSummary';
+import AmazonLogo from '@/components/AmazonLogo';
 
 export default function CheckoutPage() {
     const router = useRouter();
@@ -91,8 +92,8 @@ export default function CheckoutPage() {
             {/* Simple Checkout Nav */}
             <div className="bg-[#fcfcfc] border-b py-3 px-8 flex items-center justify-between">
                 <Link href="/">
-                    <div className="flex items-center">
-                        <span className="text-[22px] font-bold text-black font-amazon">amazon<span className="text-[#febd69]">.in</span></span>
+                    <div className="flex items-center -mb-2">
+                        <AmazonLogo variant="black" height={35} />
                     </div>
                 </Link>
                 <h1 className="text-[28px] font-normal hidden md:block text-[#111]">Checkout</h1>
