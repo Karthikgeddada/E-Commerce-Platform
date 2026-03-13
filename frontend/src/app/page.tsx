@@ -65,7 +65,7 @@ function HomeContent() {
               Up to <span className="text-[#CC0C39] font-black text-2xl md:text-4xl">70% OFF</span> on top electronics and gadgets.
             </p>
             <Link href="/?category=Electronics">
-              <button className="bg-[#ffd814] hover:bg-[#f7ca00] text-black px-6 md:px-10 py-2 md:py-3 rounded-full font-bold shadow-md transition-all border border-[#FCD200] text-sm md:text-base cursor-pointer">
+              <button className="bg-[#ffa41c] hover:bg-[#fa8900] text-black px-6 md:px-10 py-2 md:py-3 rounded-full font-bold shadow-md transition-all border border-[#f59e0b] text-sm md:text-base cursor-pointer">
                 Browse Offers
               </button>
             </Link>
