@@ -7,6 +7,10 @@ exports.createOrder = async (req, res) => {
     try {
         await client.query('BEGIN');
         const { shippingDetails, totalAmount } = req.body;
+        console.log('--- START ORDER CREATION ---');
+        console.log('User ID:', userId);
+        console.log('Shipping Details:', shippingDetails);
+        console.log('Total Amount:', totalAmount);
 
         // 1. Create Order
         const orderResult = await client.query(`
@@ -55,25 +59,23 @@ exports.createOrder = async (req, res) => {
         const userResult = await client.query('SELECT email FROM users WHERE id = $1', [userId]);
         const userEmail = userResult.rows[0]?.email;
 
+        console.log('Order created successfully:', orderId);
         await client.query('COMMIT');
 
-        // Send email notification (asynchronous)
-        try {
-            await emailService.sendOrderConfirmationEmail(userEmail, {
-                orderId,
-                orderDate,
-                items: cartItems.rows,
-                totalAmount,
-                shippingDetails
-            });
-        } catch (emailError) {
-            console.error('Failed to send confirmation email:', emailError);
-            // Don't fail the order if email fails
-        }
+        // Send email notification (truly asynchronous)
+        emailService.sendOrderConfirmationEmail(userEmail, {
+            orderId,
+            orderDate,
+            items: cartItems.rows,
+            totalAmount,
+            shippingDetails
+        }).catch(err => console.error('Delayed email failure:', err));
 
         res.json({ success: true, orderId: orderId });
     } catch (error) {
         await client.query('ROLLBACK');
+        console.error('--- ORDER CREATION ERROR ---');
+        console.error(error);
         res.status(500).json({ success: false, error: error.message });
     } finally {
         client.release();

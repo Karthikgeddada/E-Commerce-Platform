@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { authService } from '@/services/api';
 import Link from 'next/link';
@@ -10,6 +10,24 @@ export default function LoginPage() {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+    useEffect(() => {
+        const user = authService.getCurrentUser();
+        if (user) {
+            router.replace('/');
+        } else {
+            setIsCheckingAuth(false);
+        }
+    }, [router]);
+
+    if (isCheckingAuth) {
+        return (
+            <div className="min-h-screen bg-white flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#e77600]"></div>
+            </div>
+        );
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -17,8 +35,11 @@ export default function LoginPage() {
         setError('');
         try {
             await authService.login(formData);
-            router.push('/');
-            router.refresh();
+            // Small delay to ensure localStorage is flushed and state is stable
+            setTimeout(() => {
+                router.push('/');
+                router.refresh();
+            }, 500);
         } catch (err: any) {
             const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
             setError(message);

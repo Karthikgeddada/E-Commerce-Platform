@@ -9,7 +9,13 @@ import { Trash2, ChevronRight } from 'lucide-react';
 export default function CartPage() {
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<any>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('user');
+            return saved ? JSON.parse(saved) : null;
+        }
+        return null;
+    });
 
     const fetchCart = async () => {
         const currentUser = authService.getCurrentUser();

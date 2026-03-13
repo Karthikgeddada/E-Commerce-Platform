@@ -12,9 +12,20 @@ const Navbar = () => {
     const router = useRouter();
     const [cartCount, setCartCount] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<any>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('user');
+            return saved ? JSON.parse(saved) : null;
+        }
+        return null;
+    });
     const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
-    const [deliveryLocation, setDeliveryLocation] = useState('India');
+    const [deliveryLocation, setDeliveryLocation] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('deliveryLocation') || 'India';
+        }
+        return 'India';
+    });
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [searchCategory, setSearchCategory] = useState('All');
     const [isSearchCategoryOpen, setIsSearchCategoryOpen] = useState(false);
@@ -52,13 +63,22 @@ const Navbar = () => {
             }
         };
 
-        const checkAuth = () => {
+        const checkAuth = async () => {
+            // First do a fast local check
             const current = authService.getCurrentUser();
             setUser(current);
+
             const saved = localStorage.getItem('deliveryLocation');
             setDeliveryLocation(saved || 'India');
+
             if (current) fetchCart();
             else setCartCount(0);
+
+            // Then verify with backend for true persistence
+            const verifiedUser = await authService.verifyToken();
+            if (verifiedUser) {
+                setUser(verifiedUser);
+            }
         };
 
         checkAuth();
@@ -94,8 +114,13 @@ const Navbar = () => {
                         <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 text-white hover:bg-gray-800 rounded-sm">
                             <Menu size={24} />
                         </button>
-                        <Link href="/" className="flex items-center border border-transparent hover:border-white p-1 transition-all rounded-sm group">
-                            <span className="text-xl md:text-2xl font-bold tracking-tight">amazon<span className="text-[#febd69]">.in</span></span>
+                        <Link href="/" className="flex items-center border border-transparent hover:border-white px-2 pt-2 transition-all rounded-sm group overflow-hidden h-[45px] md:h-[50px]">
+                            <img
+                                src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                                alt="Amazon.in"
+                                className="h-[75%] w-auto object-contain brightness-[100] contrast-[100]"
+                            />
+                            <span className="text-[14px] font-bold text-white mt-1.5 ml-0.5">.in</span>
                         </Link>
                     </div>
 
@@ -156,7 +181,7 @@ const Navbar = () => {
                     </form>
 
                     <div className="flex items-center gap-1 lg:gap-3">
-                        <Link href="/login" className="flex items-center px-1 md:px-2 py-1 transition-all rounded-sm border border-transparent hover:border-white">
+                        <Link href={user ? "/account" : "/login"} className="flex items-center px-1 md:px-2 py-1 transition-all rounded-sm border border-transparent hover:border-white">
                             <div className="flex flex-col leading-tight">
                                 <span className="text-[11px] md:text-[12px] font-normal hidden sm:block">Hello, {user ? user.name.split(' ')[0] : 'sign in'}</span>
                                 <span className="text-[13px] md:text-[14px] font-bold flex items-center whitespace-nowrap">
@@ -233,6 +258,7 @@ const Navbar = () => {
                 onClose={() => setIsLocationModalOpen(false)}
                 onApply={handleLocationApply}
                 currentZip={deliveryLocation === 'India' ? '' : deliveryLocation}
+                isLoggedIn={!!user}
             />
         </>
     );

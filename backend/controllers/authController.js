@@ -25,7 +25,12 @@ exports.signup = async (req, res) => {
         );
 
         const user = result.rows[0];
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'your_jwt_secret', { expiresIn: '7d' });
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
+            console.error('JWT_SECRET is not defined');
+            return res.status(500).json({ success: false, message: 'Server configuration error' });
+        }
+        const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '7d' });
 
         res.status(201).json({ success: true, token, user });
     } catch (error) {
@@ -51,7 +56,12 @@ exports.login = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'your_jwt_secret', { expiresIn: '7d' });
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
+            console.error('JWT_SECRET is not defined');
+            return res.status(500).json({ success: false, message: 'Server configuration error' });
+        }
+        const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '7d' });
 
         res.json({
             success: true,

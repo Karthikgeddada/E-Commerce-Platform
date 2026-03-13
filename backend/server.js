@@ -15,12 +15,26 @@ const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors({
-    origin: [
-        'https://e-commerce-platform.up.railway.app',
-        'http://localhost:3000',
-        'http://localhost:3001'
-    ],
-    credentials: true
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        // Updated CORS logic to support various Railway domain patterns
+        const isRailway = origin.endsWith('.up.railway.app') ||
+            origin.includes('.railway.app') ||
+            origin.includes('railway.app'); // More general check for railway
+        const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
+
+        if (isRailway || isLocalhost) {
+            return callback(null, true);
+        } else {
+            console.warn('Blocked by CORS:', origin);
+            return callback(new Error('Not allowed by CORS'), false);
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
 app.use(morgan('dev'));
 app.use(bodyParser.json());

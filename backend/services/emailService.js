@@ -12,11 +12,21 @@ const sendOrderConfirmationEmail = async (userEmail, orderDetails) => {
 
         const { orderId, items, totalAmount, shippingDetails, orderDate } = orderDetails;
 
-        const productListHtml = items.map(item => `<li>${item.name} (Qty: ${item.quantity})</li>`).join('');
-        const productListText = items.map(item => `* ${item.name} (Qty: ${item.quantity})`).join('\n');
+        const productListHtml = items.map(item => `
+            <li style="padding: 10px 0; border-bottom: 1px solid #eee; list-style: none; display: flex; justify-content: space-between;">
+                <div>
+                    <span style="font-weight: bold;">${item.name}</span><br/>
+                    <span style="color: #565959; font-size: 13px;">Qty: ${item.quantity}</span>
+                </div>
+                <div style="font-weight: bold;">₹${Number(item.price).toLocaleString('en-IN')}</div>
+            </li>
+        `).join('');
 
+        const productListText = items.map(item => `* ${item.name} (Qty: ${item.quantity}) - ₹${Number(item.price).toLocaleString('en-IN')}`).join('\n');
+
+        const fromEmail = process.env.EMAIL_USER || 'no-reply@amazon.in';
         const mailOptions = {
-            from: `"Amazon.in" <${process.env.EMAIL_USER}>`,
+            from: `"Amazon.in" <${fromEmail}>`,
             to: userEmail,
             subject: 'Your Order Has Been Placed Successfully',
             text: `
@@ -58,10 +68,14 @@ Thank you for shopping with us.
                     </div>
 
                     <div style="margin: 20px 0;">
-                        <h3>Products:</h3>
-                        <ul>
+                        <h3>Order Details</h3>
+                        <ul style="padding: 0; margin: 0;">
                             ${productListHtml}
                         </ul>
+                    </div>
+
+                    <div style="text-align: right; margin-top: 20px; border-top: 2px solid #333; padding-top: 10px;">
+                        <p style="font-size: 18px; font-weight: bold;">Grand Total: ₹${Number(totalAmount).toLocaleString('en-IN')}</p>
                     </div>
 
                     <div style="margin: 20px 0;">

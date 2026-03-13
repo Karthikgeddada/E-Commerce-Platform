@@ -8,9 +8,10 @@ interface LocationModalProps {
     onClose: () => void;
     onApply: (zip: string) => void;
     currentZip?: string;
+    isLoggedIn?: boolean;
 }
 
-const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onApply, currentZip = '' }) => {
+const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onApply, currentZip = '', isLoggedIn = false }) => {
     const [zip, setZip] = useState(currentZip);
 
     if (!isOpen) return null;
@@ -32,12 +33,14 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose, onApply,
                         Delivery options and delivery speeds may vary for different locations
                     </p>
 
-                    <button
-                        onClick={() => window.location.href = '/login'}
-                        className="w-full bg-[#ffd814] hover:bg-[#f7ca00] text-[#111] py-2.5 rounded-lg text-sm font-medium shadow-sm border border-[#fcd200]"
-                    >
-                        Sign in to see your addresses
-                    </button>
+                    {!isLoggedIn && (
+                        <button
+                            onClick={() => window.location.href = '/login'}
+                            className="w-full bg-[#ffd814] hover:bg-[#f7ca00] text-[#111] py-2.5 rounded-lg text-sm font-medium shadow-sm border border-[#fcd200]"
+                        >
+                            Sign in to see your addresses
+                        </button>
+                    )}
 
                     <div className="flex items-center gap-4">
                         <div className="flex-1 h-px bg-gray-300"></div>

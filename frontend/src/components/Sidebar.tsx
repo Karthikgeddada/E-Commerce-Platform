@@ -11,7 +11,13 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
-    const [user, setUser] = React.useState<any>(null);
+    const [user, setUser] = React.useState<any>(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('user');
+            return saved ? JSON.parse(saved) : null;
+        }
+        return null;
+    });
     const catLink = (name: string) => `/?category=${encodeURIComponent(name)}`;
 
     useEffect(() => {
@@ -54,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                     <div className="bg-white/20 rounded-full p-1.5 border border-white/10">
                         <User size={25} fill="currentColor" />
                     </div>
-                    <Link href={user ? "/profile" : "/login"} onClick={onClose} className="text-[19px] font-bold tracking-tight hover:underline">
+                    <Link href={user ? "/account" : "/login"} onClick={onClose} className="text-[19px] font-bold tracking-tight hover:underline">
                         Hello, {user ? user.name : 'sign in'}
                     </Link>
                 </div>
@@ -156,7 +162,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                     <div className="py-2">
                         <h3 className="px-9 py-2 text-[18px] font-bold text-[#111]">Help & Settings</h3>
                         <ul className="text-gray-700">
-                            <li><Link href="/profile" onClick={onClose} className="block px-9 py-3 hover:bg-gray-100">Your Account</Link></li>
+                            <li><Link href="/account" onClick={onClose} className="block px-9 py-3 hover:bg-gray-100">Your Account</Link></li>
                             <li><Link href="#" className="flex items-center gap-2 px-9 py-3 hover:bg-gray-100"><Globe size={18} /> English</Link></li>
                             <li><Link href="#" className="flex items-center gap-2 px-9 py-3 hover:bg-gray-100"><Flag size={18} /> India</Link></li>
                             <li><Link href="/orders" onClick={onClose} className="block px-9 py-3 hover:bg-gray-100">Customer Service</Link></li>
