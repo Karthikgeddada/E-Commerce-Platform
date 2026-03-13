@@ -39,12 +39,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             />
 
             {/* Sidebar Shell */}
-            <div className={`fixed top-0 left-0 h-full w-[365px] bg-white z-[101] transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col shadow-2xl overflow-y-auto`}>
+            <div className={`fixed top-0 left-0 h-full w-[280px] sm:w-[365px] bg-white z-[101] transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col shadow-2xl overflow-y-auto`}>
 
-                {/* Close Button (Floating outside) */}
+                {/* Close Button (Relative to sidebar or fixed) */}
                 <button
                     onClick={onClose}
-                    className={`fixed left-[375px] top-4 text-white z-[102] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    className={`fixed left-[290px] sm:left-[375px] top-4 text-white z-[102] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 >
                     <X size={32} />
                 </button>

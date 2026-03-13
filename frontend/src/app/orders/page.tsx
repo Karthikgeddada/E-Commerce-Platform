@@ -67,12 +67,12 @@ export default function OrdersPage() {
 
                 <h1 className="text-3xl font-medium mb-6 text-gray-900">Your Orders</h1>
 
-                <div className="flex gap-6 mb-8 border-b border-gray-300">
+                <div className="flex gap-4 md:gap-6 mb-8 border-b border-gray-300 overflow-x-auto no-scrollbar whitespace-nowrap">
                     {['Orders', 'Buy Again', 'Not Yet Shipped', 'Cancelled'].map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`text-[14px] pb-2 transition-all ${activeTab === tab ? 'font-bold border-b-2 border-[#e77600] text-[#111]' : 'text-gray-600 hover:text-gray-900'}`}
+                            className={`text-[13px] md:text-[14px] pb-2 transition-all flex-shrink-0 ${activeTab === tab ? 'font-bold border-b-2 border-[#e77600] text-[#111]' : 'text-gray-600 hover:text-gray-900'}`}
                         >
                             {tab}
                         </button>

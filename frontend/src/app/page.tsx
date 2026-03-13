@@ -48,7 +48,7 @@ function HomeContent() {
 
       {/* Full-width Banner Carousel Section */}
       {!search && !category && (
-        <div className="relative w-full h-[600px] overflow-hidden">
+        <div className="relative w-full h-[300px] md:h-[600px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=2000&q=80"
             alt="Banner"
@@ -57,19 +57,19 @@ function HomeContent() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#E3E6E6] via-transparent to-transparent"></div>
 
           {/* Floating Info Box on Banner */}
-          <div className="absolute top-[80px] left-[5%] max-w-[450px] bg-white p-8 shadow-2xl rounded-sm hidden lg:block border border-gray-100">
-            <h2 className="text-3xl font-bold mb-4 text-[#111]">Great Indian Festival</h2>
-            <p className="text-gray-700 mb-6 font-medium text-lg leading-relaxed">
-              Up to <span className="text-[#CC0C39] font-black text-4xl">70% OFF</span> on top electronics and gadgets.
+          <div className="absolute top-[40px] md:top-[80px] left-[5%] max-w-[90%] md:max-w-[450px] bg-white p-6 md:p-8 shadow-2xl rounded-sm hidden sm:block border border-gray-100">
+            <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-4 text-[#111]">Great Indian Festival</h2>
+            <p className="text-gray-700 mb-4 md:mb-6 font-medium text-sm md:text-lg leading-relaxed">
+              Up to <span className="text-[#CC0C39] font-black text-2xl md:text-4xl">70% OFF</span> on top electronics and gadgets.
             </p>
-            <button className="bg-[#ffd814] hover:bg-[#f7ca00] text-black px-10 py-3 rounded-full font-bold shadow-md transition-all border border-[#FCD200]">
+            <button className="bg-[#ffd814] hover:bg-[#f7ca00] text-black px-6 md:px-10 py-2 md:py-3 rounded-full font-bold shadow-md transition-all border border-[#FCD200] text-sm md:text-base">
               Browse Offers
             </button>
           </div>
         </div>
       )}
 
-      <main className={`flex-1 w-full pb-10 ${!search && !category ? '-mt-[350px]' : 'mt-6'} relative z-10 px-4`}>
+      <main className={`flex-1 w-full pb-10 ${!search && !category ? '-mt-[100px] md:-mt-[350px]' : 'mt-6'} relative z-10 px-2 md:px-4`}>
         <div className="max-w-[1600px] mx-auto w-full">
           <div className={`relative z-10 ${(!search && !category) ? 'pt-[300px]' : 'pt-2'}`}>
             {!search && !category && (

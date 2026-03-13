@@ -104,14 +104,14 @@ export default function CartPage() {
                                 <span className="text-[14px] text-gray-500 mb-1">Price</span>
                             </div>
                             {cartItems.map((item) => (
-                                <div key={item.id} className="flex py-6 border-b last:border-0 gap-8 group">
-                                    <div className="w-44 h-44 flex-shrink-0 flex items-center justify-center p-4 bg-[#f7f8f8] rounded-sm relative overflow-hidden">
+                                <div key={item.id} className="flex flex-col sm:flex-row py-6 border-b last:border-0 gap-4 md:gap-8 group">
+                                    <div className="w-full sm:w-44 h-44 flex-shrink-0 flex items-center justify-center p-4 bg-[#f7f8f8] rounded-sm relative overflow-hidden">
                                         <img src={item.primary_image} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply" />
                                     </div>
                                     <div className="flex-1 flex flex-col">
-                                        <div className="flex justify-between items-start mb-2 group-hover:text-[#007185] transition-colors">
-                                            <h3 className="text-[18px] font-bold text-gray-900 leading-snug lg:max-w-[80%] line-clamp-2">{item.name}</h3>
-                                            <span className="font-bold text-[18px] text-gray-900 whitespace-nowrap">₹{Number(item.price).toLocaleString('en-IN')}</span>
+                                        <div className="flex flex-col sm:flex-row justify-between items-start mb-2 group-hover:text-[#007185] transition-colors">
+                                            <h3 className="text-[16px] md:text-[18px] font-bold text-gray-900 leading-snug lg:max-w-[80%] line-clamp-2">{item.name}</h3>
+                                            <span className="font-bold text-[18px] text-gray-900 whitespace-nowrap mt-2 sm:mt-0">₹{Number(item.price).toLocaleString('en-IN')}</span>
                                         </div>
                                         <p className="text-[#007600] text-[12px] font-bold mb-1">In stock</p>
                                         <div className="flex items-center gap-1.5 mb-4">
@@ -119,7 +119,7 @@ export default function CartPage() {
                                             <span className="text-[12px] text-gray-500 font-medium">Eligible for FREE Shipping</span>
                                         </div>
 
-                                        <div className="mt-auto flex items-center gap-4 text-[13px] text-[#007185]">
+                                        <div className="mt-auto flex flex-wrap items-center gap-3 md:gap-4 text-[12px] md:text-[13px] text-[#007185]">
                                             <div className="flex items-center bg-[#f0f2f2] rounded-[8px] border border-gray-300 shadow-sm px-3 py-1 group-hover:border-gray-400 transition-colors">
                                                 <span className="mr-2 text-gray-600 font-medium">Qty:</span>
                                                 <select
@@ -132,7 +132,7 @@ export default function CartPage() {
                                                     ))}
                                                 </select>
                                             </div>
-                                            <div className="h-4 w-px bg-gray-300"></div>
+                                            <div className="hidden md:block h-4 w-px bg-gray-300"></div>
                                             <button
                                                 onClick={() => handleRemove(item.id)}
                                                 className="hover:underline hover:text-[#c45500] font-medium"
@@ -140,9 +140,9 @@ export default function CartPage() {
                                                 Delete
                                             </button>
                                             <div className="h-4 w-px bg-gray-300"></div>
-                                            <button className="hover:underline hover:text-[#c45500] font-medium">Save for later</button>
-                                            <div className="h-4 w-px bg-gray-300"></div>
-                                            <button className="hover:underline hover:text-[#c45500] font-medium hidden sm:block">Compare with similar items</button>
+                                            <button className="hover:underline hover:text-[#c45500] font-medium">Save</button>
+                                            <div className="hidden sm:block h-4 w-px bg-gray-300"></div>
+                                            <button className="hover:underline hover:text-[#c45500] font-medium hidden sm:block">Similar</button>
                                         </div>
                                     </div>
                                 </div>
