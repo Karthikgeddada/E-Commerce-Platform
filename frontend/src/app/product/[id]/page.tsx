@@ -47,6 +47,21 @@ export default function ProductDetail() {
         }
     };
 
+    const handleBuyNow = async () => {
+        const user = authService.getCurrentUser();
+        if (!user) {
+            router.push('/login');
+            return;
+        }
+        try {
+            await cartService.add(product.id, quantity);
+            window.dispatchEvent(new CustomEvent('cartUpdated'));
+            router.push('/checkout');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const handleAddToWishlist = async () => {
         const user = authService.getCurrentUser();
         if (!user) {
@@ -224,6 +239,7 @@ export default function ProductDetail() {
                                     Add to Cart
                                 </button>
                                 <button
+                                    onClick={handleBuyNow}
                                     className="w-full bg-[#ffa41c] hover:bg-[#fa8900] text-[#111] py-2.5 rounded-full text-[14px] font-bold shadow-sm border border-[#f59e0b] transition-colors active:scale-[0.98]"
                                 >
                                     Buy Now
