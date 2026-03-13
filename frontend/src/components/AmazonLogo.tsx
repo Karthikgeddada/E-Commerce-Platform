@@ -16,7 +16,7 @@ const AmazonLogo: React.FC<AmazonLogoProps> = ({ variant = 'white', className = 
             style={{
                 height: height,
                 width: width,
-                filter: variant === 'white' ? 'brightness(0) invert(1)' : 'none'
+                filter: variant === 'white' ? 'invert(1) hue-rotate(180deg) brightness(1.2)' : 'none'
             }}
         />
     );
