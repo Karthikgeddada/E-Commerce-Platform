@@ -14,6 +14,7 @@ import {
     Users,
     Smartphone,
     List,
+    Heart,
     Headphones,
     Mail
 } from 'lucide-react';
@@ -98,9 +99,9 @@ export default function AccountPage() {
             bg: "bg-gray-50"
         },
         {
-            title: "Your Lists",
-            description: "View, modify, and share your lists, or create new ones",
-            icon: <List size={32} className="text-[#48a3a2]" />,
+            title: "Your Wishlist",
+            description: "View, modify, and manage your saved items",
+            icon: <Heart size={32} className="text-[#c45500]" />,
             link: "/wishlist",
             bg: "bg-[#e5f4f4]"
         },
