@@ -15,6 +15,7 @@ interface ProductCardProps {
         category_name: string;
         rating: number;
         num_reviews: number;
+        old_price?: number;
     }
 }
 
@@ -70,6 +71,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
             {/* Badges */}
             <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                {product.old_price && (
+                    <span className="bg-[#cc0c39] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                        Limited time deal
+                    </span>
+                )}
                 {product.price > 50000 && (
                     <span className="bg-[#cc0c39] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider">
                         Premium Choice
@@ -125,10 +131,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         </div>
                         <div className="flex items-center gap-2 mt-1">
                             <span className="text-xs text-gray-500 block">
-                                M.R.P: <span className="line-through">₹{Math.round(product.price * 1.2).toLocaleString('en-IN')}</span>
+                                M.R.P: <span className="line-through">₹{Math.round(product.old_price || product.price * 1.2).toLocaleString('en-IN')}</span>
                             </span>
                             <span className="text-[11px] bg-red-50 text-[#CC0C39] font-bold px-1.5 py-0.5 rounded-sm border border-red-100">
-                                20% off
+                                {product.old_price ? Math.round(((product.old_price - product.price) / product.old_price) * 100) : 20}% off
                             </span>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 exports.getAllProducts = async (req, res) => {
     try {
-        const { search, category, minRating } = req.query;
+        const { search, category, minRating, offersOnly } = req.query;
         let query = `
             SELECT p.*, c.name as category_name, 
             (SELECT image_url FROM product_images WHERE product_id = p.id AND is_primary = TRUE LIMIT 1) as primary_image
@@ -23,6 +23,9 @@ exports.getAllProducts = async (req, res) => {
         if (minRating) {
             whereClauses.push(`p.rating >= $${params.length + 1}`);
             params.push(parseFloat(minRating));
+        }
+        if (offersOnly === 'true') {
+            whereClauses.push(`p.old_price IS NOT NULL`);
         }
 
         if (whereClauses.length > 0) {

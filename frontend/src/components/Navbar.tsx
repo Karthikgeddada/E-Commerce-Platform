@@ -152,6 +152,7 @@ const Navbar = () => {
                                                         setSearchCategory(selectedCat);
                                                         setIsSearchCategoryOpen(false);
                                                         if (selectedCat === 'All') router.push('/');
+                                                        else if (selectedCat === 'Deals') router.push('/offers');
                                                         else router.push(catLink(selectedCat));
                                                     }}
                                                     className={`px-4 py-1.5 text-[13px] text-gray-800 hover:bg-[#e7f4f5] hover:text-[#007185] cursor-pointer whitespace-nowrap ${(searchCategory === cat || (searchCategory === 'All' && cat === 'All Categories')) ? 'bg-[#f3f3f3] font-bold border-l-4 border-[#007185]' : ''}`}
@@ -232,7 +233,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
                         {[
                             { label: 'Fresh', href: catLink('Amazon Fresh') },
-                            { label: 'Deals', href: catLink('Deals') },
+                            { label: 'Deals', href: '/offers' },
                             { label: 'Electronics', href: catLink('Electronics') },
                             { label: 'Appliances', href: catLink('Appliances') },
                             { label: 'Fashion', href: catLink('Amazon Fashion') },

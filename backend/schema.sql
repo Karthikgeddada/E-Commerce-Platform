@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS products (
     stock_quantity INTEGER DEFAULT 0,
     rating DECIMAL(2, 1) DEFAULT 0.0,
     num_reviews INTEGER DEFAULT 0,
+    old_price DECIMAL(10, 2),
     specifications JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
