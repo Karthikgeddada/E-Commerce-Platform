@@ -49,12 +49,14 @@ function HomeContent() {
       {/* Full-width Banner Carousel Section */}
       {!search && !category && (
         <div className="relative w-full h-[300px] md:h-[600px] overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=2000&q=80"
-            alt="Banner"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#E3E6E6] via-transparent to-transparent"></div>
+          <Link href="/?category=Electronics">
+            <img
+              src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=2000&q=80"
+              alt="Banner"
+              className="w-full h-full object-cover cursor-pointer hover:opacity-95 transition-opacity"
+            />
+          </Link>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#E3E6E6] via-transparent to-transparent pointer-events-none"></div>
 
           {/* Floating Info Box on Banner */}
           <div className="absolute top-[40px] md:top-[80px] left-[5%] max-w-[90%] md:max-w-[450px] bg-white p-6 md:p-8 shadow-2xl rounded-sm hidden sm:block border border-gray-100">
@@ -62,9 +64,11 @@ function HomeContent() {
             <p className="text-gray-700 mb-4 md:mb-6 font-medium text-sm md:text-lg leading-relaxed">
               Up to <span className="text-[#CC0C39] font-black text-2xl md:text-4xl">70% OFF</span> on top electronics and gadgets.
             </p>
-            <button className="bg-[#ffd814] hover:bg-[#f7ca00] text-black px-6 md:px-10 py-2 md:py-3 rounded-full font-bold shadow-md transition-all border border-[#FCD200] text-sm md:text-base">
-              Browse Offers
-            </button>
+            <Link href="/?category=Electronics">
+              <button className="bg-[#ffd814] hover:bg-[#f7ca00] text-black px-6 md:px-10 py-2 md:py-3 rounded-full font-bold shadow-md transition-all border border-[#FCD200] text-sm md:text-base cursor-pointer">
+                Browse Offers
+              </button>
+            </Link>
           </div>
         </div>
       )}
@@ -99,20 +103,22 @@ function HomeContent() {
                     {card.items ? (
                       <div className="grid grid-cols-2 gap-4 flex-1 mb-4">
                         {card.items.map((item: any, i: number) => (
-                          <a key={i} href={`/?category=${encodeURIComponent(item.cat || item.name)}`} className="flex flex-col gap-1 group/item">
+                          <Link key={i} href={`/?category=${encodeURIComponent(item.cat || item.name)}`} className="flex flex-col gap-1 group/item outline-none">
                             <div className="overflow-hidden h-[120px] bg-gray-50 flex items-center justify-center">
                               <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500" />
                             </div>
-                            <span className="text-[12px] text-gray-800 font-medium truncate">{item.name}</span>
-                          </a>
+                            <span className="text-[12px] text-gray-800 font-medium truncate group-hover/item:text-[#c45500]">{item.name}</span>
+                          </Link>
                         ))}
                       </div>
                     ) : (
-                      <div className="flex-1 mb-4 overflow-hidden h-[300px]">
+                      <Link href={`/?category=${encodeURIComponent(card.link!)}`} className="flex-1 mb-4 overflow-hidden h-[300px] outline-none">
                         <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      </div>
+                      </Link>
                     )}
-                    <a href={card.link ? `/?category=${encodeURIComponent(card.link)}` : '/'} className="text-[13px] text-[#007185] hover:text-[#c45500] hover:underline transition-colors font-medium mt-2">Shop now</a>
+                    <Link href={card.link ? `/?category=${encodeURIComponent(card.link)}` : '/'} className="text-[13px] text-[#007185] hover:text-[#c45500] hover:underline transition-colors font-medium mt-2">
+                      Shop now
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -125,12 +131,12 @@ function HomeContent() {
                   <div>
                     <h4 className="font-bold text-[14px] mb-3 text-gray-900 border-b pb-2 uppercase tracking-wide">Category</h4>
                     <ul className="space-y-2 text-[14px] text-gray-700">
-                      <li><a href="/" className={`hover:text-[#c45500] transition-colors ${!category ? 'font-bold text-black' : ''}`}>All Departments</a></li>
+                      <li><Link href="/" className={`hover:text-[#c45500] transition-colors ${!category ? 'font-bold text-black' : ''}`}>All Departments</Link></li>
                       {['Electronics', 'Amazon Fashion', 'Shoes & Handbags', 'Appliances', 'Home & Kitchen', 'Books', 'Beauty', 'Sports, Fitness & Outdoors', 'Grocery & Gourmet Foods'].map((cat) => (
                         <li key={cat}>
-                          <a href={`/?category=${encodeURIComponent(cat)}`} className={`hover:text-[#c45500] transition-colors ${category === cat ? 'font-bold text-black' : ''}`}>
+                          <Link href={`/?category=${encodeURIComponent(cat)}`} className={`hover:text-[#c45500] transition-colors ${category === cat ? 'font-bold text-black' : ''}`}>
                             {cat}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
