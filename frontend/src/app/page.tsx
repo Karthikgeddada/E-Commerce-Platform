@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { productService } from '@/services/api';
 import Navbar from '@/components/Navbar';
 import ProductGrid from '@/components/ProductGrid';
 import Link from 'next/link';
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
@@ -253,5 +253,13 @@ export default function Home() {
         </div>
       </footer>
     </div >
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
