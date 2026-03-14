@@ -81,7 +81,7 @@ function HomeContent() {
                 {[
                   {
                     title: 'Upgrade your home', items: [
-                      { name: 'Appliances', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=300', cat: 'Appliances' },
+                      { name: 'Appliances', img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300', cat: 'Appliances' },
                       { name: 'Home Decor', img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=300', cat: 'Home & Kitchen' },
                       { name: 'Kitchen', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=300', cat: 'Home & Kitchen' },
                       { name: 'Outdoor', img: 'https://images.unsplash.com/photo-1598528738936-c50861cc75a9?w=300', cat: 'Garden & Outdoors' }
