@@ -41,7 +41,23 @@ exports.getAllProducts = async (req, res) => {
         } else if (sort === 'Avg. Customer Review') {
             query += ' ORDER BY p.rating DESC';
         } else {
-            query += ' ORDER BY p.id DESC'; // Default "Featured" shows newest/best products first
+            // Default "Featured" shows fruits first, then newest products
+            query += ` ORDER BY 
+                CASE 
+                    WHEN (c.name = 'Grocery & Gourmet Foods' OR c.name = 'Amazon Fresh') AND p.name ILIKE 'Fresh %' AND (
+                         p.name ILIKE '%Apple%' OR p.name ILIKE '%Banana%' OR p.name ILIKE '%Orange%' 
+                         OR p.name ILIKE '%Pomegranate%' OR p.name ILIKE '%Strawberry%' OR p.name ILIKE '%Grapes%' 
+                         OR p.name ILIKE '%Mango%' OR p.name ILIKE '%Papaya%' OR p.name ILIKE '%Guava%' 
+                         OR p.name ILIKE '%Watermelon%' OR p.name ILIKE '%Coconut%' OR p.name ILIKE '%Mosambi%'
+                    ) THEN 0 
+                    WHEN (c.name = 'Grocery & Gourmet Foods' OR c.name = 'Amazon Fresh') AND (
+                         p.name ILIKE '%Apple%' OR p.name ILIKE '%Banana%' OR p.name ILIKE '%Orange%' 
+                         OR p.name ILIKE '%Pomegranate%' OR p.name ILIKE '%Strawberry%' OR p.name ILIKE '%Grapes%' 
+                         OR p.name ILIKE '%Mango%' OR p.name ILIKE '%Papaya%' OR p.name ILIKE '%Guava%' 
+                         OR p.name ILIKE '%Watermelon%' OR p.name ILIKE '%Coconut%' OR p.name ILIKE '%Mosambi%'
+                    ) THEN 1
+                    ELSE 2 END, 
+                p.id DESC`;
         }
 
         const result = await db.query(query, params);
