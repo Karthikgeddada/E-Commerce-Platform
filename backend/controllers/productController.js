@@ -41,7 +41,7 @@ exports.getAllProducts = async (req, res) => {
         } else if (sort === 'Avg. Customer Review') {
             query += ' ORDER BY p.rating DESC';
         } else {
-            query += ' ORDER BY p.id ASC'; // Default "Featured"
+            query += ' ORDER BY p.id DESC'; // Default "Featured" shows newest/best products first
         }
 
         const result = await db.query(query, params);
