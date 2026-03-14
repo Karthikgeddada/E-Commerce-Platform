@@ -63,13 +63,19 @@ exports.createOrder = async (req, res) => {
         await client.query('COMMIT');
 
         // Send email notification (truly asynchronous)
+        console.log(`Attempting to send order confirmation to: ${userEmail}`);
         emailService.sendOrderConfirmationEmail(userEmail, {
             orderId,
             orderDate,
             items: cartItems.rows,
             totalAmount,
             shippingDetails
-        }).catch(err => console.error('Delayed email failure:', err));
+        }).then(() => {
+            console.log(`Email successfully sent to: ${userEmail}`);
+        }).catch(err => {
+            console.error(`FAILED to send email to: ${userEmail}`);
+            console.error(err);
+        });
 
         res.json({ success: true, orderId: orderId });
     } catch (error) {
