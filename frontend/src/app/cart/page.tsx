@@ -111,12 +111,14 @@ export default function CartPage() {
                             </div>
                             {cartItems.map((item) => (
                                 <div key={item.id} className="flex flex-col sm:flex-row py-6 border-b last:border-0 gap-4 md:gap-8 group">
-                                    <div className="w-full sm:w-44 h-44 flex-shrink-0 flex items-center justify-center p-4 bg-[#f7f8f8] rounded-sm relative overflow-hidden">
+                                    <Link href={`/product/${item.product_id || item.id}`} className="w-full sm:w-44 h-44 flex-shrink-0 flex items-center justify-center p-4 bg-[#f7f8f8] rounded-sm relative overflow-hidden active:scale-[0.98] transition-transform">
                                         <img src={item.primary_image} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply" />
-                                    </div>
+                                    </Link>
                                     <div className="flex-1 flex flex-col">
                                         <div className="flex flex-col sm:flex-row justify-between items-start mb-2 group-hover:text-[#007185] transition-colors">
-                                            <h3 className="text-[17px] md:text-[18px] font-medium text-gray-900 hover:text-[#c45500] hover:underline cursor-pointer leading-snug lg:max-w-[75%] line-clamp-2 transition-colors">{item.name}</h3>
+                                            <Link href={`/product/${item.product_id || item.id}`} className="flex-1 lg:max-w-[75%]">
+                                                <h3 className="text-[17px] md:text-[18px] font-medium text-gray-900 hover:text-[#c45500] hover:underline cursor-pointer leading-snug line-clamp-2 transition-colors">{item.name}</h3>
+                                            </Link>
                                             <span className="font-bold text-[18px] text-gray-900 whitespace-nowrap mt-2 sm:mt-0">₹{Number(item.price).toLocaleString('en-IN')}</span>
                                         </div>
                                         <p className="text-[#007600] text-[12px] font-bold mb-1">In stock</p>
