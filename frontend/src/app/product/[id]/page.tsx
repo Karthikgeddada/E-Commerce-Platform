@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import { ChevronRight, Star, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 export default function ProductDetail() {
     const router = useRouter();
@@ -41,7 +42,13 @@ export default function ProductDetail() {
         try {
             await cartService.add(product.id, quantity);
             window.dispatchEvent(new CustomEvent('cartUpdated'));
-            alert('Added to cart!');
+            toast.success(
+                <div className="flex flex-col gap-1">
+                    <span className="font-bold">Added to Cart!</span>
+                    <span className="text-[12px] opacity-90 line-clamp-1">{product.name}</span>
+                </div>,
+                { icon: '🛒' }
+            );
         } catch (error) {
             console.error(error);
         }
@@ -70,9 +77,10 @@ export default function ProductDetail() {
         }
         try {
             await wishlistService.add(product.id);
-            alert('Added to wishlist!');
+            toast.success('Added to Wish List!', { icon: '❤️' });
         } catch (error) {
             console.error(error);
+            toast.error('Failed to add to Wish List');
         }
     };
 

@@ -6,6 +6,7 @@ import { wishlistService, cartService, authService } from '@/services/api';
 import { useRouter } from 'next/navigation';
 import { Trash2, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'react-hot-toast';
 
 export default function WishlistPage() {
     const router = useRouter();
@@ -36,8 +37,10 @@ export default function WishlistPage() {
         try {
             await wishlistService.remove(id);
             fetchWishlist();
+            toast.success('Removed from Wishlist', { icon: '🗑️' });
         } catch (err) {
             console.error(err);
+            toast.error('Failed to remove item');
         }
     };
 
@@ -47,9 +50,16 @@ export default function WishlistPage() {
             window.dispatchEvent(new CustomEvent('cartUpdated'));
             // Optionally remove from wishlist after adding to cart
             // await handleRemove(product.wishlist_id);
-            alert('Added to cart!');
+            toast.success(
+                <div className="flex flex-col gap-1">
+                    <span className="font-bold">Added to Cart!</span>
+                    <span className="text-[12px] opacity-90 line-clamp-1">{product.name}</span>
+                </div>,
+                { icon: '🛒' }
+            );
         } catch (err) {
             console.error(err);
+            toast.error('Failed to add to cart');
         }
     };
 

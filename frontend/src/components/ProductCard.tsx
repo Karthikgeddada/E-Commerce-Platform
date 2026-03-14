@@ -33,14 +33,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         try {
             await cartService.add(product.id, 1);
             window.dispatchEvent(new CustomEvent('cartUpdated'));
-            toast.success(`${product.name} added to cart!`, {
-                icon: '🛒',
-                style: {
-                    borderRadius: '4px',
-                    background: '#232f3e',
-                    color: '#fff',
-                },
-            });
+            toast.success(
+                <div className="flex flex-col gap-1">
+                    <span className="font-bold">Added to Cart!</span>
+                    <span className="text-[12px] opacity-90 line-clamp-1">{product.name}</span>
+                </div>,
+                {
+                    icon: '🛒',
+                    style: {
+                        borderRadius: '8px',
+                        background: '#232f3e',
+                        color: '#fff',
+                        padding: '12px 20px',
+                    },
+                }
+            );
         } catch (error) {
             console.error('Error adding to cart:', error);
             toast.error('Failed to add item to cart');
