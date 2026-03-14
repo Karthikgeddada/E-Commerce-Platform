@@ -232,7 +232,7 @@ const Navbar = () => {
                     </button>
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
                         {[
-                            { label: 'Fresh', href: catLink('Amazon Fresh') },
+                            { label: 'Fresh', href: catLink('Fresh') },
                             { label: 'Deals', href: '/offers' },
                             { label: 'Electronics', href: catLink('Electronics') },
                             { label: 'Appliances', href: catLink('Appliances') },

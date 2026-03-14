@@ -17,8 +17,12 @@ exports.getAllProducts = async (req, res) => {
             params.push(`%${search}%`);
         }
         if (category) {
-            whereClauses.push(`c.name = $${params.length + 1}`);
-            params.push(category);
+            if (category === 'Fresh' || category === 'Amazon Fresh') {
+                whereClauses.push(`(c.name = 'Amazon Fresh' OR (c.name = 'Grocery & Gourmet Foods' AND p.name ILIKE 'Fresh %'))`);
+            } else {
+                whereClauses.push(`c.name = $${params.length + 1}`);
+                params.push(category);
+            }
         }
         if (minRating) {
             whereClauses.push(`p.rating >= $${params.length + 1}`);
