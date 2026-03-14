@@ -40,6 +40,9 @@ exports.getAllProducts = async (req, res) => {
             query += ' ORDER BY p.price DESC';
         } else if (sort === 'Avg. Customer Review') {
             query += ' ORDER BY p.rating DESC';
+        } else if (sort === 'Discount: High to Low') {
+            // Sort by discount percentage (p.old_price - p.price) / p.old_price
+            query += ' ORDER BY (p.old_price - p.price) / p.old_price DESC NULLS LAST';
         } else {
             // Default "Featured" shows fruits first, then newest products
             query += ` ORDER BY 

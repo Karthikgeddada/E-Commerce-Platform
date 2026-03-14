@@ -49,7 +49,7 @@ function HomeContent() {
       {/* Full-width Banner Carousel Section */}
       {!search && !category && (
         <div className="relative w-full h-[300px] md:h-[600px] overflow-hidden">
-          <Link href="/?category=Electronics">
+          <Link href="/?category=Electronics" className="block w-full h-full">
             <img
               src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=2000&q=80"
               alt="Banner"
@@ -58,8 +58,8 @@ function HomeContent() {
           </Link>
           <div className="absolute inset-0 bg-gradient-to-t from-[#E3E6E6] via-transparent to-transparent pointer-events-none"></div>
 
-          {/* Floating Info Box on Banner */}
-          <div className="absolute top-[40px] md:top-[80px] left-[5%] max-w-[90%] md:max-w-[450px] bg-white p-6 md:p-8 shadow-2xl rounded-sm hidden sm:block border border-gray-100">
+          {/* Floating Info Box on Banner - Separated from image link to avoid nested links */}
+          <div className="absolute top-[40px] md:top-[80px] left-[5%] max-w-[90%] md:max-w-[450px] bg-white p-6 md:p-8 shadow-2xl rounded-sm hidden sm:block border border-gray-100 z-20">
             <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-4 text-[#111]">Great Indian Festival</h2>
             <p className="text-gray-700 mb-4 md:mb-6 font-medium text-sm md:text-lg leading-relaxed">
               Up to <span className="text-[#CC0C39] font-black text-2xl md:text-4xl">70% OFF</span> on top electronics and gadgets.

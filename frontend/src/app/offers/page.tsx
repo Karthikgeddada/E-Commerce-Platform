@@ -10,7 +10,7 @@ import Link from 'next/link';
 function OffersContent() {
     const searchParams = useSearchParams();
     const category = searchParams.get('category') || '';
-    const initialSort = searchParams.get('sort') || 'Featured';
+    const initialSort = searchParams.get('sort') || 'Discount: High to Low';
 
     const [products, setProducts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -110,6 +110,7 @@ function OffersContent() {
                                         onChange={(e) => setSortBy(e.target.value)}
                                         className="bg-gray-100 border border-gray-300 text-[13px] rounded-md px-4 py-2 outline-none focus:border-[#e67a00] shadow-sm cursor-pointer hover:bg-gray-200 transition-colors"
                                     >
+                                        <option value="Discount: High to Low">Sort by: Top Deals</option>
                                         <option value="Featured">Sort by: Featured</option>
                                         <option value="Price: Low to High">Price: Low to High</option>
                                         <option value="Price: High to Low">Price: High to Low</option>
