@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { cartService, wishlistService, authService } from '@/services/api';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 interface ProductCardProps {
     product: {
@@ -32,10 +33,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         try {
             await cartService.add(product.id, 1);
             window.dispatchEvent(new CustomEvent('cartUpdated'));
-            // Use a custom event or a better way to show success in production
-            // For now, let's just make it feel more integrated
+            toast.success(`${product.name} added to cart!`, {
+                icon: '🛒',
+                style: {
+                    borderRadius: '4px',
+                    background: '#232f3e',
+                    color: '#fff',
+                },
+            });
         } catch (error) {
             console.error('Error adding to cart:', error);
+            toast.error('Failed to add item to cart');
         }
     };
 
